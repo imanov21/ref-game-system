@@ -1,2 +1,7 @@
-node_modules
+#front-end
 client/node_modules
+Standalone structure/.idea
+Standalone structure/frontend/node_modules
+#back-end
+node_modules
+Standalone structure/backend/node_modules
