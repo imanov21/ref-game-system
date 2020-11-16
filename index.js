@@ -1,6 +1,5 @@
 const express = require("express"),
     path = require('path'),
-    cowsay = require('cowsay'),
     cors = require('cors'),
     app = express(),
     mongoose = require('mongoose'),
