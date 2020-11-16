@@ -1,19 +1,15 @@
 const express = require("express"),
     path = require('path'),
-    cors = require('cors'),
     app = express(),
     mongoose = require('mongoose'),
     passport = require("passport"),
     LocalStrategy = require("passport-local"),
     methodOverride = require("method-override"),
-    Task = require("../models/task"),
-    User = require("../models/user"),
-    UserHistory = require("../models/user_history"),
-    UserAchievement = require("../models/users_achievement");
+    User = require("models/user");
 
 //requiring routes
 
-const indexRoutes = require("../routes");
+const indexRoutes = require("routes");
 
 const dbUrl = "mongodb+srv://dbuser1:topcodeR37@Cluster0.vvlrr.mongodb.net/icando?retryWrites=true&w=majority"
 
@@ -45,11 +41,6 @@ app.use(express.static(path.join(__dirname, 'client/build')))
 app.use(express.static("public"));
 
 app.use("/", indexRoutes);
-
-// Anything that doesn't match the above, send back index.html
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/client/build/index.html'))
-})
 
 // Choose the port and start the server
 const PORT = process.env.PORT || 5000
