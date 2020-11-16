@@ -9,7 +9,7 @@ var User = require("./models/user");
 
 //requiring routes
 
-const indexRoutes = require("routes");
+const indexRoutes = require("./routes/index");
 
 const dbUrl = "mongodb+srv://dbuser1:topcodeR37@Cluster0.vvlrr.mongodb.net/icando?retryWrites=true&w=majority"
 
