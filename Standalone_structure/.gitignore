@@ -1,0 +1,6 @@
+#front-end
+.idea
+client/node_modules
+
+#back-end
+node_modules

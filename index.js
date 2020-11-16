@@ -1,37 +1,60 @@
-const express = require('express')
-const cowsay = require('cowsay')
-const cors = require('cors')
-// Create the server
-const app = express()
-// Serve our api route /cow that returns a custom talking text cow
-const path = require('path')
+const express = require("express"),
+    path = require('path'),
+    cowsay = require('cowsay'),
+    cors = require('cors'),
+    app = express(),
+    mongoose = require('mongoose'),
+    passport = require("passport"),
+    LocalStrategy = require("passport-local"),
+    methodOverride = require("method-override"),
+    Achievement = require("../models/achievement"),
+    Task = require("../models/task"),
+    User = require("../models/user"),
+    UserHistory = require("../models/user_history"),
+    UserAchievement = require("../models/users_achievement");
+
+//requiring routes
+
+const indexRoutes = require("../routes");
+
+const dbUrl = "mongodb+srv://dbuser1:topcodeR37@Cluster0.vvlrr.mongodb.net/icando?retryWrites=true&w=majority"
+
+mongoose.connect(dbUrl, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+})
+    .then(() => console.log('DB Connected!'))
+    .catch(err => {
+        console.log("DB Connection Error: " + err.message);
+    });
+
+app.use(methodOverride("_method"));
+
+// PASSPORT CONFIGURATION
+app.use(require("express-session")({
+    secret: "Science conference is very important!",
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 // Serve static files from the React frontend app
 app.use(express.static(path.join(__dirname, 'client/build')))
+
+app.use("/", indexRoutes);
+
 // Anything that doesn't match the above, send back index.html
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname + '/client/build/index.html'))
 })
 
-app.get('/api/cow/:say', cors(), async (req, res, next) => {
-    try {
-        const text = req.params.say
-        const moo = cowsay.say({ text })
-        res.json({ moo })
-    } catch (err) {
-        next(err)
-    }
-})
-// Serve our base route that returns a Hello World cow
-app.get('/api/cow/', cors(), async (req, res, next) => {
-    try {
-        const moo = cowsay.say({ text: 'Hello World!' })
-        res.json({ moo })
-    } catch (err) {
-        next(err)
-    }
-})
 // Choose the port and start the server
 const PORT = process.env.PORT || 5000
+
 app.listen(PORT, () => {
-    console.log(`Mixing it up on port ${PORT}`)
+    console.log(`server started on port ${PORT}`)
 })
