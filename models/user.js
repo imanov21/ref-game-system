@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+var
 var passportLocalMongoose = require("passport-local-mongoose");
 
 var UserSchema = new mongoose.Schema({
@@ -6,8 +7,7 @@ var UserSchema = new mongoose.Schema({
     lastname: String,
     email: String,
     password: String,
-    vipStatus: Boolean,
-    value: Number
+    points: Number
 });
 
 UserSchema.plugin(passportLocalMongoose)
