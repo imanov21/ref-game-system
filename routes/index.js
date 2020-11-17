@@ -1,10 +1,8 @@
 var express = require("express");
 var router = express.Router();
 var passport = require("passport");
-var mongoose = require('mongoose');
 var User = require("../models/user");
 var Achievement = require("../models/achievement");
-var middleware = require("../middleware");
 
 //root route
 router.get("/", function (req, res) {

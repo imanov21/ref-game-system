@@ -1,11 +1,11 @@
 const express = require("express"),
-    path = require('path'),
     app = express(),
     bodyParser = require("body-parser"),
     mongoose = require('mongoose'),
     passport = require("passport"),
     LocalStrategy = require("passport-local"),
     methodOverride = require("method-override"),
+    path = require('path'),
     User = require("./models/user");
 
 //requiring routes
@@ -43,6 +43,11 @@ passport.deserializeUser(User.deserializeUser());
 // Serve static files from the React frontend app
 // app.use(express.static(path.join(__dirname, 'client/build')))
 // app.use(express.static("public"));
+
+app.use(function (req, res, next) {
+    res.locals.currentUser = req.user;
+    next();
+});
 
 app.use("/", indexRoutes);
 
