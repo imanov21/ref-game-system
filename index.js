@@ -52,7 +52,7 @@ app.use(function (req, res, next) {
 app.use("/", indexRoutes);
 
 // Choose the port and start the server
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 8000
 
 app.listen(PORT, () => {
     console.log(`server started on port ${PORT}`)

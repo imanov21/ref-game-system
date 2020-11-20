@@ -5,8 +5,21 @@ var UserSchema = new mongoose.Schema({
     firstname: String,
     lastname: String,
     email: String,
+    username: String,
     password: String,
-    points: Number
+    points: Number,
+    refLinks: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "RefLinks"
+        }
+    ],
+    achievements: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Achievement"
+        }
+    ]
 });
 
 UserSchema.plugin(passportLocalMongoose)

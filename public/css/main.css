@@ -5,6 +5,28 @@
 }
 
 /* hr between simple notation */
+.achiev-card{
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+}
+
+.achiev-card img{
+  object-fit: cover;
+  width: 100%;
+}
+
+.progress-bar{
+  height:5em;
+}
 
 .text-hr {
   border: 0;
