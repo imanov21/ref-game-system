@@ -4,31 +4,74 @@
         <h1>Welcome on Dashboard page!</h1>
         <h3>Your personal refferal progress</h3>
     </div>
-    <div class="row bg-lw">
-        <% achievements.forEach(function(achievement){ %>
+    <div class="row bg-secondary">
+        <% for (let i = 0; i < 2; i++) { %>
         <div class="col-lg-2">
-            <div class="achiev-card bg-lw m-3 p-1">
-                <img src="<%= achievement.image %>" alt="...">
-            </div>
-        </div>
-        <% }); %>
-    </div>
-</div>
-
-<div class="container text-center">
-    <h3 class="text-left">Your earned rewards:</h3>
-    <div class="row">
-        <% achievements.forEach(function(achievement){ %>
-        <div class="col-lg-4 cards">
-            <div class="card bg-lw h-100">
-                <img src="<%= achievement.image %>" class="card-img-top" alt="...">
+            <div class="achiev-card bg-primary m-3 p-1">
+                <img src="<%= achievements[i].image %>" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title text-capitalize"><i class="fas fa-paste"></i> <%= achievement.title %></h5>
-                    <p class="card-text"> <%= achievement.description %></p>
+                    <p class="card-text"> <%= achievements[i].value %></p>
                 </div>
             </div>
         </div>
-        <% }); %>
+        <% } %>
+        <div style="border-left:1px solid rgb(173, 24, 24);height:15em"></div>
+        <% for (let i = 2; i < 4; i++) { %>
+        <div class="col-lg-2">
+            <div class="achiev-card bg-lw m-3 p-1">
+                <img src="<%= achievements[i].image %>" alt="...">
+                <div class="card-body">
+                    <p class="card-text"> <%= achievements[i].value %></p>
+                </div>
+            </div>
+        </div>
+        <% } %>
+    </div>
+    <div class="row bg-secondary text-right">
+        <div class="pr-5 col-lg-3">
+            <p>Your score: 600</p>
+            <p class="pr-3">Your level: 6</p>
+        </div>
+        <div class="col-lg-2 text-center">
+            <p style="color: rgb(173, 24, 24);">You are here</p>
+        </div>
+    </div>
+</div>
+
+<div class="container pt-2 mt-3 text-center bg-secondary">
+    <hr class="p-1 bg-primary">
+    <h3 class="text-left">Your earned rewards:</h3>
+    <hr class="p-1 bg-primary">
+    <div class="row">
+        <% for (let i = 0; i < 2; i++) { %>
+        <div class="col-lg-4 cards">
+            <div class="card bg-primary h-100">
+                <img src="<%= achievements[i].image %>" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title text-capitalize"><i class="fas fa-paste"></i> <%= achievements[i].title %>
+                    </h5>
+                    <p class="card-text"> <%= achievements[i].description %></p>
+                </div>
+            </div>
+        </div>
+        <% } %>
+    </div>
+    <hr class="p-1 bg-primary">
+    <h3 class="text-left">Upcoming rewards:</h3>
+    <hr class="p-1 bg-primary">
+    <div class="row">
+        <% for (let i = 2; i < 4; i++) { %>
+        <div class="col-lg-4 cards">
+            <div class="card bg-lw h-100">
+                <img src="<%= achievements[i].image %>" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title text-capitalize"><i class="fas fa-paste"></i> <%= achievements[i].title %>
+                    </h5>
+                    <p class="card-text"> <%= achievements[i].description %></p>
+                </div>
+            </div>
+        </div>
+        <% } %>
     </div>
 </div>
 <%- include("partials/footer") %>

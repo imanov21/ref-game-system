@@ -50,7 +50,7 @@ router.post("/register", function (req, res) {
                     var generatedLink = service.link + req.body.username + makeString(5);
                     refLink.find({}, function (refLink) {
                         if (refLink.link == generatedLink) {
-                            generatedLink += makeString(5);
+                            generatedLink += makeString(5); // didn't work
                         }
                     });
                     newrefLink.link = generatedLink;
@@ -60,14 +60,24 @@ router.post("/register", function (req, res) {
                         } else {
                             refferalLink.save();
                             newUser.refLinks.push(refferalLink);
-                            newUser.save();
+                            newUser.save(); // didn't work
                             console.log(newUser);
                         }
                     });
                 });
             }
         })
+        Achievement.find({}, function (err, achievements) {
+            if (err) {
+                console.log(err);
+            } else {
+                achievements.forEach(function (achievement) {
+                    newUser.achievements.push(achievement);
+                })
+            }
+        });
         passport.authenticate("local")(req, res, function () {
+            newUser.save(); // didn't work properly
             res.redirect("/");
         });
     });
